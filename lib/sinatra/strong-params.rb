@@ -60,7 +60,7 @@ module Sinatra
             sym_params.keys.each do |key|
               sym_params[(key.to_sym rescue key) || key] = sym_params.delete(key)
             end
-            missing_parameters = needed.select? { |key| sym_params[key].nil? || sym_params[key].empty? }
+            missing_parameters = needed.select { |key| sym_params[key].nil? || sym_params[key].empty? }
             if missing_parameters.any?
               fail RequiredParamMissing, "#{ missing_parameters.first.to_s.humanize } cannot be blank"
               # settings.missing_parameter_message
